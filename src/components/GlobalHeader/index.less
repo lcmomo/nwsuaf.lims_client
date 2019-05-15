@@ -1,0 +1,124 @@
+@import '~antd/lib/style/themes/default.less';
+
+.header{
+  //position: absolute;
+  top:0px;
+  height:64px;
+  width:30%;
+  
+  float:right;
+  //background-color: aqua;
+  .head{
+    
+    position: relative;
+    width:98%;
+   
+  
+    height:100%;
+    //background-color: blue;
+    .right {
+      float: right;
+      height: 64px;
+      position: relative;
+    // background-color: red;
+      width:95%;
+      .action {
+        cursor: pointer;
+        padding: 0 12px;
+        display: inline-block;
+        transition: all 0.3s;
+        height: 100%;
+        width:90%;
+        
+        .userAvatar {
+          display: flex;
+          align-items: center;
+          img {
+            width: 40px;
+            border-radius: 50%;
+          }
+          span{
+            font-size: 16px;
+          vertical-align: middle;
+          color: @text-color;
+          }
+        }
+        > i {
+          font-size: 16px;
+          vertical-align: middle;
+          color: @text-color;
+          text-align: center;
+        }
+        &:hover,
+        &:global(.ant-popover-open) {
+          background: @primary-1;
+        }
+      }
+      .search {
+        padding: 0;
+        margin: 0 12px;
+        &:hover {
+          background: transparent;
+        }
+      }
+      .account {
+        .avatar {
+          margin: 20px 8px 20px 0;
+          color: @primary-color;
+          background: rgba(255, 255, 255, 0.85);
+          vertical-align: middle;
+        }
+      }
+    
+      .action {
+        display: inline-block;
+      }
+      
+      .menu {
+        :global(.anticon) {
+          margin-right: 8px;
+        }
+        :global(.ant-dropdown-menu-item) {
+          width:100%;
+        
+        }
+      }
+      
+    }
+    }
+
+ }
+
+ 
+ 
+  
+  
+  @media only screen and (max-width: @screen-md) {
+    .header {
+      :global(.ant-divider-vertical) {
+        vertical-align: unset;
+      }
+      .name {
+        display: none;
+      }
+      i.trigger {
+        padding: 0 12px;
+      }
+      .logo {
+        padding-right: 12px;
+        position: relative;
+      }
+      .right {
+        position: absolute;
+        right: 12px;
+        top: 0;
+        background: #fff;
+        .account {
+          .avatar {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  
