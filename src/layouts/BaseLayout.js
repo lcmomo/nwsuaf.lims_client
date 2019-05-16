@@ -68,9 +68,9 @@ class BaseLayout extends Component {
     const { location: { pathname } } = this.props;
     const userInfo=JSON.parse(sessionStorage.getItem('user'));
     const paths = getMenuTreePath([pathname], getMenuData(userInfo.role), true, true);
-  console.log(paths);
-  console.log(pathname);
-  console.log(getMenuData())
+  // console.log(paths);
+  // console.log(pathname);
+  // console.log(getMenuData())
 
     return (
       <Breadcrumb>
@@ -85,8 +85,7 @@ class BaseLayout extends Component {
   render() {
     const user=JSON.parse(sessionStorage.getItem('user'));
     const menudata=getMenuData(user.role);
-    console.log(menudata);
-    console.log(this.props);
+   
     
     const {app,routes}=this.props;
   
@@ -109,9 +108,9 @@ class BaseLayout extends Component {
             </Menu.Item>
           </Menu> */}
 
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[menudata[0].key]}
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={[menudata[0].children[0].key]}
           inlineCollapsed={this.state.opend}
-          defaultOpenKeys={[menudata[0].name]}
+          defaultOpenKeys={[menudata[0].children[0].name]}
           onClick={this.handleMenuClick}
           defaultSelectedKeys={['home']}
           selectedKeys={this.state.selectedKeys}
@@ -132,8 +131,8 @@ class BaseLayout extends Component {
                   >
                   {children.map(({key,name,path})=>(
                      <MenuItem key={key} >
-                     {/* <Link to={path}>{name}</Link>  */}
-                     {name}
+                     <Link to={path}>{name}</Link> 
+                     
                      </MenuItem>
                   ))
                   

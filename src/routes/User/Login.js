@@ -30,7 +30,7 @@ const FormItem=Form.Item;
                         payload:user
                     }).then(()=>{
                         Message.success('登录成功');
-                        this.props.history.push('/index/notice/index');
+                        this.props.history.push('/index/notice/list');
                       
                     })
                 }else{

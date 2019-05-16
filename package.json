@@ -11,7 +11,11 @@
     "antd": "^3.17.0",
     "babel-plugin-import": "^1.11.0",
     "dva": "^2.4.1",
+    "moment": "^2.24.0",
+    "path-to-regexp": "^3.0.0",
+    "prop-types": "^15.7.2",
     "qs": "^6.7.0",
+    "ramda": "^0.26.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },

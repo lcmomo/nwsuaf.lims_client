@@ -24,7 +24,7 @@ const userMenu=[
         children:[
             {
                 key:'list',
-                path:'/index/notice/index',
+                path:'/index/notice/list',
                 name:'消息列表'
 
             }

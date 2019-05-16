@@ -18,7 +18,7 @@
           model:[],
           routes:[
             {
-              path:'/index/notice/index',
+              path:'/index/notice/list',
               component:()=>import('../../routes/Notice/List.js'),
               model:[import('../../models/notice')]
 

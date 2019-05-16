@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getLocationParams, filterObj } from '../utils';
+import { getLocationParams, filterObj } from '../../utils/index.js';
 import { stringify } from 'qs';
 import { Pagination, Card } from 'antd';
 
@@ -8,7 +8,7 @@ import { Pagination, Card } from 'antd';
  * @param {Component} FilterComponent 检索条件组件:
  *   非受控组件。须接受 defaultValue 初始值，和暴露 onSubmit 提交数据方法
  * @param {function} fetchDataFunc 列表数据查询方法：
- *   返回对象结构约定 { items: [], pageBean: { pageSize, pageNo, totalCount} }
+ *   返回对象结构约定 { items: [], pageBean: { pageSize, pageNum, total} }
  *   return 的对象最终会通过 props 传递给 页面组件，只有 pageBean 会被父组件使用，items 会被原样传递
  * @param {object} option 配置条件:
  *   pagination: 是否显示分页器
@@ -35,9 +35,9 @@ const withSearchAndPaging = (
           metaData: {},
           items: [],
           pageBean: {
-            pageNo: 1,
+            pageNum: 1,
             pageSize: 20,
-            totalCount: 0,
+            total: 0,
           },
           loading: false,
         };
@@ -62,9 +62,9 @@ const withSearchAndPaging = (
         if (!('pageSize' in searchCondition)) {
           searchCondition.pageSize = 20;
         }
-        // 添加默认 pageNo
-        if (!('pageNo' in searchCondition)) {
-          searchCondition.pageNo = 1;
+        // 添加默认 pageNum
+        if (!('pageNum' in searchCondition)) {
+          searchCondition.pageNum = 1;
         }
 
         this.setState({ loading: true }, async () => {
@@ -88,7 +88,7 @@ const withSearchAndPaging = (
           {
             searchCondition: filterObj({
               ...params,
-              pageNo: 1,
+              pageNum: 1,
               pageSize: this.state.searchCondition.pageSize,
             }),
           },
@@ -106,12 +106,12 @@ const withSearchAndPaging = (
               pageSizeOptions: ['10', '20', '50', '100'],
               defaultCurrent: 1,
               pageSize: pageBean.pageSize || 20,
-              current: pageBean.pageNo || 1,
+              current: pageBean.pageNum || 1,
               total: pageBean.totalCount || 0,
               showTotal: total => `共 ${total} 条`,
-              onChange: pageNo => {
+              onChange: pageNum => {
                 this.setState(
-                  { searchCondition: { ...this.state.searchCondition, pageNo } },
+                  { searchCondition: { ...this.state.searchCondition, pageNum } },
                   () => {
                     this.fetchData();
                   }
