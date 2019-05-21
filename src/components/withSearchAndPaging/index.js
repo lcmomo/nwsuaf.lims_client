@@ -35,8 +35,8 @@ const withSearchAndPaging = (
           metaData: {},
           items: [],
           pageBean: {
-            pageNum: 1,
-            pageSize: 20,
+            page: 1,
+            size: 20,
             total: 0,
           },
           loading: false,
@@ -46,6 +46,13 @@ const withSearchAndPaging = (
       componentDidMount() {
         this.fetchData();
       }
+
+      componentWillUnmount(){
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
 
       // 分页器每页条数改变
       onShowSizeChange = (current, pageSize) => {
@@ -60,18 +67,18 @@ const withSearchAndPaging = (
 
         // 添加默认 pageSize
         if (!('pageSize' in searchCondition)) {
-          searchCondition.pageSize = 20;
+          searchCondition.size = 20;
         }
         // 添加默认 pageNum
         if (!('pageNum' in searchCondition)) {
-          searchCondition.pageNum = 1;
+          searchCondition.page = 1;
         }
 
         this.setState({ loading: true }, async () => {
           // 执行请求数据方法
           const queryResult = await fetchDataFunc(this.props, searchCondition);
           // 更新 url
-          this.props.history.replace(`?${stringify(searchCondition)}`);
+          //this.props.history.replace(`?${stringify(searchCondition)}`);
 
           this.setState({
             metaData: queryResult,
@@ -88,8 +95,8 @@ const withSearchAndPaging = (
           {
             searchCondition: filterObj({
               ...params,
-              pageNum: 1,
-              pageSize: this.state.searchCondition.pageSize,
+              page: 1,
+              size: this.state.searchCondition.pageSize,
             }),
           },
           () => this.fetchData()

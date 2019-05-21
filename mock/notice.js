@@ -129,6 +129,22 @@ export default{
   
         
     },
+
+    'PUT /notice/add':{
+        code:200,
+        data:{
+
+        },
+        message:'SUCCESS'
+    },
+
+    'DELETE /notice/delete':{
+        code:200,
+        data:{
+"no":12
+        },
+        message:'SUCCESS'
+    }
   
   
   

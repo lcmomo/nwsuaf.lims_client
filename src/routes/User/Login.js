@@ -17,10 +17,14 @@ const FormItem=Form.Item;
     this.props.form.validateFields((err,values)=>{
        
         if(!err){
-            Request('/user/login',{method:'POST'}).then((res)=>{
+            console.log(values);
+            Request('http://120.95.133.187:8080/user/login',{method:'POST',
+           
+            body:values}).then((res)=>{
                
+           
                 const user=res.data.data;
-                
+                console.log(res);
                 if(res.data.message==='SUCCESS'){
                     //localStorage.setItem('user',JSON.stringify(user));
                     sessionStorage.setItem('user',JSON.stringify(user))
@@ -42,45 +46,7 @@ const FormItem=Form.Item;
            
         }
     })
-    //     this.props.form.validateFields((err,values)=>{
-    //      // console.log(values)
-    //       if(!err){
-    //         const {email,pwd}=values;
-    //         //发起网络请求
-    //         Request('./users.json').then(res=>{
-    //           //console.log(res);
-    //           const {data,status} =res;
-    //           if(res&&status===200&&data){
-    //             let users=[];
-    //             for(let key in data){
-    //               users.push({...data[key],key})
-    //             }
-    //             //账户密码匹配
-    //             users=users.filter(user=>{
-    //               return user.pwd===pwd&&user.email===email;
-    //             });
-               
-    //             //有内容，则存储到models ,页面跳转
-    //             if(users&&users.length){
     
-    //               //先存储到localstorage
-    //               localStorage.setItem('email',users[0].email);
-    //               localStorage.setItem('key',users[0].key);
-    //                 this.props.dispatch({
-    //                   type:'global/setUserInfo',
-    //                   payload:users[0]
-    //                 }).then(()=>{
-    //                   this.props.history.push('/');
-    //                 })
-    //             }else{
-    //               Message.error('邮箱或密码错误')
-    //             }
-    //           }
-             
-    //         })
-           
-    //     }
-    //    })
       }
   render() {
 

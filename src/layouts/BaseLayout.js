@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import moment from 'moment/moment'
 import { Layout, Menu, Icon,Breadcrumb,Button} from 'antd';
 import {Link,Switch} from 'dva/router'
 import styles from './BaseLayout.less'
@@ -86,7 +86,7 @@ class BaseLayout extends Component {
     const user=JSON.parse(sessionStorage.getItem('user'));
     const menudata=getMenuData(user.role);
    
-    
+    console.log(moment(user.redate).format('YYYY-MM-DD HH:mm'))
     const {app,routes}=this.props;
   
     return (
@@ -108,9 +108,9 @@ class BaseLayout extends Component {
             </Menu.Item>
           </Menu> */}
 
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[menudata[0].children[0].key]}
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={["notice"]}
           inlineCollapsed={this.state.opend}
-          defaultOpenKeys={[menudata[0].children[0].name]}
+          defaultOpenKeys={["notice"]}
           onClick={this.handleMenuClick}
           defaultSelectedKeys={['home']}
           selectedKeys={this.state.selectedKeys}
@@ -164,7 +164,7 @@ class BaseLayout extends Component {
             //   minHeight: 480,
             // }}
 
-            style={{margin:'24px 24px 0'}}
+            style={{margin:'24px 24px 0',minHeight:600}}
           >
           <div className={styles.breadcrumb}>
             {this.renderBreadcrumb()}

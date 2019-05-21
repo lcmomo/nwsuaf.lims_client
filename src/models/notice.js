@@ -1,7 +1,9 @@
 
 import {message} from 'antd'
 import {
-  fetchNoticeListI
+  fetchNoticeListI,
+  createNoticeI,
+  deleteNoticeRecordI,
 } from '../services/notice';
 export default {
 
@@ -31,6 +33,28 @@ export default {
         if (typeof callback === 'function') {
           callback(results);
         }
+      },
+      //添加消息通知列表
+      *createNotice({payload,callback},{call}){
+        const response=yield call(createNoticeI,payload);
+        console.log(payload);
+       
+        if(response.message==="SUCCESS"){
+          if (typeof callback === 'function') {
+            callback();
+          }
+        }
+      },
+
+      //删除一条消息记录
+      *deleteNoticeRecord({payload,callback},{call}){
+        const response=yield call(deleteNoticeRecordI,payload);
+        console.log(response)
+        if(response.message==="SUCCESS"){
+          if (typeof callback === 'function') {
+            callback();
+          }
+        }
       }
     },
   
@@ -41,8 +65,9 @@ export default {
 
       saveNoticeList(state,action){
         console.log("action");
-        const {list,pageNum,pageSize}=action.payload.data
-        console.log(list);
+        const {list,pageNum,pageSize}=action.payload.data;
+       console.log(action.payload)
+        //console.log(list);
         return {
           ...state,
           noticeList:list,
