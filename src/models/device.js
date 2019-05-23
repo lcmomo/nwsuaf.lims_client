@@ -1,5 +1,5 @@
 
-import {message} from 'antd'
+
 import {
   fetchDeviceListI,
   createDeviceI,
@@ -25,7 +25,7 @@ export default {
         yield put({ type: 'save' });
       },
 
-      //获取用户列表
+      //获取设备列表
       *fetchDeviceList({payload,callback},{call,put}){
         const results=yield call(fetchDeviceListI,payload);
         yield put({
@@ -47,7 +47,7 @@ export default {
           callback(results);
         }
       },
-      //添加用户列表
+      //添加设备列表
       *createDevice({payload,callback},{call}){
         const response=yield call(createDeviceI,payload);
         //console.log(payload);
@@ -59,7 +59,7 @@ export default {
         }
       },
 
-      //删除一条用户记录
+      //删除一条设备记录
       *deleteDeviceRecord({payload,callback},{call}){
         const response=yield call(deleteDeviceRecordI,payload);
         //console.log(response)
@@ -69,7 +69,7 @@ export default {
           }
         }
       },
-      //修改用户记录
+      //修改设备记录
       *updateDevice({payload,callback},{call}){
      
         const response=yield call(updateDeviceI,payload);

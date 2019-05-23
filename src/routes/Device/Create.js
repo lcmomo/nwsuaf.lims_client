@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form, Input, Button,Card ,Message} from 'antd';
+import {  Card ,Message} from 'antd';
 import { connect } from 'dva/index';
-import NoticeForm from './Form.js'
-const FormItem=Form.Item;
-const {TextArea}=Input;
-@connect(({notice})=>({notice}))
-class CreateNotice extends React.Component{
+import DeviceForm from './Form.js'
+
+
+@connect(({device})=>({device}))
+class CreateDevice extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -15,8 +15,11 @@ class CreateNotice extends React.Component{
 
     submitForm = values => {
         this.props.dispatch({
-          type: 'notice/createNotice',
-          payload: values,
+          type: 'device/createDevice',
+          payload: {
+              ...values,
+              totalPrice:values.price*values.amount
+            },
           callback: () => {
               Message.success("添加成功")
             this.props.history.push('list');
@@ -26,11 +29,11 @@ class CreateNotice extends React.Component{
     render(){
         return (
             <div>
-                <Card title={<b>新增消息</b>}>
-                    <NoticeForm submitForm={this.submitForm}></NoticeForm>
+                <Card title={<b>新增设备</b>}>
+                    <DeviceForm submitForm={this.submitForm}></DeviceForm>
                 </Card>
             </div>
         )
     }
 }
-export default  CreateNotice;
+export default  CreateDevice;

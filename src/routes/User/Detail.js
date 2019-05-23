@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Input, Button,Card ,Message} from 'antd';
 import { connect } from 'dva/index';
-import CurrentUserForm from './currentUserForm.js'
+//import CurrentUserForm from './currentUserForm.js'
 const FormItem=Form.Item;
-const {TextArea}=Input;
+//const {TextArea}=Input;
 @connect(({user})=>({user}))
 class CreateUser extends React.Component{
     constructor(props){
@@ -35,8 +35,8 @@ class CreateUser extends React.Component{
           },
     })
  
-
-    this.setState({userInfo:res.data})
+    sessionStorage.setItem("user",JSON.stringify(res.data))
+    this.setState({userInfo:res.data});
     return res;
 
     }
@@ -67,7 +67,7 @@ class CreateUser extends React.Component{
     render(){
         //const userInfo=this.props.currentUser;
         //const currentUser=JSON.parse(sessionStorage.getItem('user'));
-        const { form: { getFieldDecorator }, record } = this.props;
+        const { form: { getFieldDecorator }} = this.props;
         const formItemLayout = {
             labelCol: {
               xs: { span: 24 },

@@ -1,12 +1,11 @@
 import React, { Component,Fragment } from 'react';
-import { Button, Card, Table, Popconfirm,Form,Input} from 'antd';
-import moment from 'moment/moment';
+import { Button, Card, Table, Popconfirm} from 'antd';
+//import moment from 'moment/moment';
 import {Link} from 'dva/router'
 import {connect} from 'dva';
-import withSearchAndPaging from '../../components/withSearchAndPaging';
+//import withSearchAndPaging from '../../components/withSearchAndPaging';
 
-const FormItem=Form.Item;
-const TextArea=Input.TextArea;
+
 @connect(({plat,global})=>(
   {plat,global}
 ))
@@ -118,7 +117,7 @@ const TextArea=Input.TextArea;
               style={{color:666,cursor:'pointer'}}><Link to={`/index/plat/detail/${item.platname}`}>详情</Link></Button>&nbsp;&nbsp;&nbsp;&nbsp;
               <Popconfirm
                 title="是否删除该条记录？"
-                onConfirm={() => this. removePlatRecord(item.id)}
+                onConfirm={() => this.removePlatRecord(item.id)}
               >
                 <Button type="danger" style={{color:666,cursor:'pointer', display:userInfo.role==="用户"?'none':'normal'}}>删除</Button>
               </Popconfirm>
@@ -128,7 +127,7 @@ const TextArea=Input.TextArea;
       },
     ]
 
-      const {global,pageBean,plat}=this.props;
+      const {plat}=this.props;
       const userInfo=JSON.parse(sessionStorage.getItem('user'));
       const {platList}=plat;
     // const { visible, loading,record } = this.state;

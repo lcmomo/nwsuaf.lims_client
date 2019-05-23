@@ -1,15 +1,12 @@
 import React from 'react';
-import { Form, Input, Button,Select } from 'antd';
+import { Form, Input, Button} from 'antd';
 import { connect } from 'dva/index';
-import {User_CATEGORY,ORDER_CATEGORY} from '../../utils/constant.js'
+//import {User_CATEGORY,ORDER_CATEGORY} from '../../utils/constant.js'
 
 
 
 const FormItem=Form.Item;
-const {TextArea}=Input;
-const {Option}=Select;
-const categoryOptions=Object.entries(User_CATEGORY);
-const orderOptions=Object.entries(ORDER_CATEGORY);
+
 
 @connect(({user})=>({user}))
 class UserForm extends React.Component{

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Form, Input, Button, Select } from 'antd';
-import { connect } from 'dva/index';
+import { Form, Input, Button} from 'antd';
+//import { connect } from 'dva/index';
 
 const FormItem = Form.Item;
-const { TextArea } = Input;
-const { Option } = Select;
 
 
 class SupplierForm extends React.Component {
@@ -28,7 +26,7 @@ class SupplierForm extends React.Component {
 
 
     render() {
-        const { form: { getFieldDecorator }, record } = this.props;
+        const { form: { getFieldDecorator } } = this.props;
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },

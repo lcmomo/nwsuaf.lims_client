@@ -1,17 +1,21 @@
 
-import {message} from 'antd'
+
 import {
-  fetchPlatListI,
-  createPlatI,
-  deletePlatRecordI,
-  fetchInstrumentByCondiionI
+  fetchInstrumentListI,
+  createInstrumentI,
+  deleteInstrumentRecordI,
+  fetchInstrumentByCondiionI,
+  fetchCurrentInstrumentI,
+  updateInstrumentI
 } from '../services/instrument';
 export default {
 
     namespace: 'instrument',
   
     state: {
-      instrumentList:[]
+      instrumentList:[],
+
+      
     },
   
     subscriptions: {
@@ -26,9 +30,21 @@ export default {
 
       //获取仪器列表
       *fetchInstrumentList({payload,callback},{call,put}){
-        const results=yield call(fetchPlatListI,payload);
+        const results=yield call(fetchInstrumentListI,payload);
         yield put({
           type:'saveInstrumentList',
+          payload:results,
+        });
+        if (typeof callback === 'function') {
+          callback(results);
+        }
+      },
+
+      //获取一条记录
+      *fetchCurrentInstrument({payload,callback},{call,put}){
+        const results=yield call(fetchCurrentInstrumentI,payload);
+        yield put({
+          type:'saveCurrentInstrument',
           payload:results,
         });
         if (typeof callback === 'function') {
@@ -49,9 +65,9 @@ export default {
           callback(results);
         }
       },
-      //添加平台列表
-      *createUser({payload,callback},{call}){
-        const response=yield call(createPlatI,payload);
+      //添加仪器列表
+      *createInstrument({payload,callback},{call}){
+        const response=yield call(createInstrumentI,payload);
         console.log(payload);
        
         if(response.message==="SUCCESS"){
@@ -61,10 +77,21 @@ export default {
         }
       },
 
-      //删除一条平台记录
-      *deletePlatRecord({payload,callback},{call}){
-        const response=yield call(deletePlatRecordI,payload);
+      //删除一条仪器记录
+      *deleteInstrumentRecord({payload,callback},{call}){
+        const response=yield call(deleteInstrumentRecordI,payload);
         console.log(response)
+        if(response.message==="SUCCESS"){
+          if (typeof callback === 'function') {
+            callback();
+          }
+        }
+      },
+
+      //修改仪器记录
+      *updateInstrument({payload,callback},{call}){
+     console.log("err2")
+        const response=yield call(updateInstrumentI,payload);
         if(response.message==="SUCCESS"){
           if (typeof callback === 'function') {
             callback();
@@ -78,7 +105,7 @@ export default {
         return { ...state, ...action.payload };
       },
 
-      savePlatList(state,action){
+      saveInstrumentList(state,action){
         console.log("action");
         const {list,pageNum,pageSize}=action.payload.data;
        console.log(list);
@@ -112,6 +139,18 @@ export default {
          
         }
       },
+
+      saveCurrentInstrument(state,action){
+       
+        const currentInstrument=action.payload.data;
+       //console.log(currentDevice);
+      
+        //console.log(list);
+        return {
+          ...state,
+          currentInstrument:currentInstrument 
+        }
+      }
 
 
 

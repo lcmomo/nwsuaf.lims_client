@@ -1,14 +1,13 @@
 import React, { Component,Fragment } from 'react'
-import { Button, Card, Table, Popconfirm, Modal,Form,Input,Message} from 'antd';
+import { Button, Card, Table, Popconfirm, Message} from 'antd';
 
 import { Link } from 'dva/router';
 import { connect } from 'dva/index';
-import moment from 'moment/moment';
-import withSearchAndPaging from '../../components/withSearchAndPaging';
+//import moment from 'moment/moment';
+//import withSearchAndPaging from '../../components/withSearchAndPaging';
 //import Filter from './Filter';
 
-const FormItem=Form.Item;
-const TextArea=Input.TextArea;
+
 @connect(({producer,global})=>(
   {producer,global}
 ))
@@ -128,7 +127,7 @@ const TextArea=Input.TextArea;
               style={{color:666,cursor:'pointer'}}>编辑</Link><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <Popconfirm
                 title="是否删除该条记录？"
-                onConfirm={() => this. removeProducerRecord(item.id)}
+                onConfirm={() => this.removeProducerRecord(item.id)}
               >
                 <a  style={{color:666,cursor:'pointer'}}>删除</a>
               </Popconfirm>
@@ -138,8 +137,8 @@ const TextArea=Input.TextArea;
       },
     ]
 
-    const {global,pageBean,producer}=this.props;
-    const userInfo=JSON.parse(sessionStorage.getItem('user'));
+    const {producer}=this.props;
+   // const userInfo=JSON.parse(sessionStorage.getItem('user'));
     const {producerList}=producer;
     //const { visible, loading,record } = this.state;
     console.log(this.props);

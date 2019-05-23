@@ -65,11 +65,27 @@
               component:()=>import('../Plat/Detail.js'),
               model:[import('../../models/plat'),import('../../models/instrument')]
             },
+            {
+              path:'/index/plat/usechart/:id',
+              component:()=>import('../Plat/useChart.js'),
+              model:[import('../../models/plat'),import('../../models/instrument')]
+            },
+            
 
             //仪器管理
             {
               path:'/index/instrument/list',
               component:()=>import('../Instrument/List.js'),
+              model:[import('../../models/instrument')]
+            },
+            {
+              path:'/index/instrument/addInstrument',
+              component:()=>import('../Instrument/Create.js'),
+              model:[import('../../models/instrument')]
+            },
+            {
+              path:'/index/instrument/updateInstrument',
+              component:()=>import('../Instrument/Update.js'),
               model:[import('../../models/instrument')]
             },
             
@@ -85,7 +101,7 @@
               model:[import('../../models/device')]
             },
             {
-              path:'/index/device/updateDevice',
+              path:'/index/device/updateDevice/:id',
               component:()=>import('../Device/Update.js'),
               model:[import('../../models/device')]
             },
@@ -143,6 +159,45 @@
               model:[import('../../models/supplier')]
             },
 
+
+            //预约管理
+            {
+              path:'/index/order/list',
+              component:()=>import('../Order/List.js'),
+              model:[import('../../models/order')]
+            },
+
+            {
+              path:'/index/order/addOrder/:instrName',
+              component:()=>import('../Order/AddOrder.js'),
+              model:[import('../../models/order')]
+            },
+            //用户预约记录
+            {
+              path:'/index/order/userlist',
+              component:()=>import('../Order/UserList.js'),
+              model:[import('../../models/order')]
+            },
+
+
+            //维修管理
+
+            {
+              path:'/index/repair/list',
+              component:()=>import('../Repair/List.js'),
+              model:[import('../../models/repair')]
+            },
+
+            {
+              path:'/index/repair/addRepair',
+              component:()=>import('../Repair/Create.js'),
+              model:[import('../../models/repair')]
+            },
+            {
+              path:'/index/repair/updateRepair/:id',
+              component:()=>import('../Repair/Update.js'),
+              model:[import('../../models/repair')]
+            },
 
 
           ]

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getLocationParams, filterObj } from '../../utils/index.js';
-import { stringify } from 'qs';
+
 import { Pagination, Card } from 'antd';
 
 /**

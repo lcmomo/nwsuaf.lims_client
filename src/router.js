@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
-import IndexPage from './routes/IndexPage';
-import Login from './routes/User/Login.js';
+import { Router,  Switch } from 'dva/router';
+//import IndexPage from './routes/IndexPage';
+//import Login from './routes/User/Login.js';
 import SubRoutes from './utils/SubRoutes.js'
 import {RouteConfig} from './routes/common/router.js'
 //私有路由开关
-const isAuthority=true;
+//const isAuthority=true;
 
 
 function RouterConfig({ history ,app}) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Tag, Divider, Dropdown,Message } from 'antd';
+import { Menu, Icon, Badge, Dropdown,Message } from 'antd';
 import {connect} from 'dva';
 import classNames from 'classnames';
 import { Link } from 'dva/router';
@@ -39,7 +39,16 @@ export default class index extends Component {
     return (
       <div className={styles.header}>
         <div className={styles.head}>
+       
         <div className={styles.right}>
+          <div className={styles.NoticeBox}>
+            <div className={styles.noticediv}>
+              <Badge count={1} style={{fontSize:18}} dot>
+                  <Icon type="bell" style={{fontSize:36,color:'#999'}}></Icon>
+              </Badge>
+            </div>
+            
+            </div>
           <Dropdown overlay={menu}>
               <div className={classNames(styles.action)}>
                 <div className={styles.userAvatar}>

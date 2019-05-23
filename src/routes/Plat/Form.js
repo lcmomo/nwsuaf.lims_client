@@ -6,7 +6,7 @@ import {User_CATEGORY,ORDER_CATEGORY} from '../../utils/constant.js'
 
 
 const FormItem=Form.Item;
-const {TextArea}=Input;
+
 const {Option}=Select;
 const categoryOptions=Object.entries(User_CATEGORY);
 const orderOptions=Object.entries(ORDER_CATEGORY);
@@ -14,7 +14,7 @@ const orderOptions=Object.entries(ORDER_CATEGORY);
 @connect(({user})=>({user}))
 class UserForm extends React.Component{
     constructor(props){
-        super();
+        super(props);
         this.state={};
     }
 
@@ -33,7 +33,7 @@ class UserForm extends React.Component{
     
 
     render(){
-        const { form: { getFieldDecorator }, record } = this.props;
+        const { form: { getFieldDecorator }} = this.props;
         const formItemLayout = {
             labelCol: {
               xs: { span: 24 },

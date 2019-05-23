@@ -1,9 +1,8 @@
 import React from 'react';
-import { Form, Input, Button,Card ,Message} from 'antd';
+import { Card ,Message} from 'antd';
 import { connect } from 'dva/index';
 import NoticeForm from './Form.js'
-const FormItem=Form.Item;
-const {TextArea}=Input;
+
 @connect(({notice})=>({notice}))
 class CreateNotice extends React.Component{
     constructor(props){

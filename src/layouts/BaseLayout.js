@@ -112,7 +112,7 @@ class BaseLayout extends Component {
           inlineCollapsed={this.state.opend}
           defaultOpenKeys={["notice"]}
           onClick={this.handleMenuClick}
-          defaultSelectedKeys={['home']}
+          //defaultSelectedKeys={['home']}
           selectedKeys={this.state.selectedKeys}
           
           >

@@ -11,6 +11,8 @@
     "antd": "^3.17.0",
     "babel-plugin-import": "^1.11.0",
     "dva": "^2.4.1",
+    "echarts": "^4.2.1",
+    "echarts-for-react": "^2.0.15-beta.0",
     "moment": "^2.24.0",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",

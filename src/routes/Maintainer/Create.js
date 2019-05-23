@@ -1,9 +1,8 @@
 import React from 'react';
-import { Form, Input, Button,Card ,Message} from 'antd';
+import {Card ,Message} from 'antd';
 import { connect } from 'dva/index';
 import MaintainerForm from './Form.js'
-const FormItem=Form.Item;
-const {TextArea}=Input;
+
 @connect(({maintainer})=>({maintainer}))
 class CreateMaintainer extends React.Component{
     constructor(props){

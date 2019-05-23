@@ -1,13 +1,12 @@
 import React, { Component,Fragment } from 'react'
-import { Button, Card, Table, Popconfirm, Modal,Form,Input,Message} from 'antd';
+import { Button, Card, Table, Popconfirm,Message} from 'antd';
 
-import { Link } from 'dva/router';
+//import { Link } from 'dva/router';
 import { connect } from 'dva/index';
-import moment from 'moment/moment';
-import withSearchAndPaging from '../../components/withSearchAndPaging';
+//import moment from 'moment/moment';
+//import withSearchAndPaging from '../../components/withSearchAndPaging';
 
-const FormItem=Form.Item;
-const TextArea=Input.TextArea;
+
 @connect(({user,global})=>(
   {user,global}
 ))
@@ -69,12 +68,20 @@ const TextArea=Input.TextArea;
   }
 
 
-//   showModal=(item)=>{
-//     this.setState({
-//       visible:true,
-//       record:item
-//     })
-//   }
+  Authorize=(item)=>{
+   const isAudited=item.isAudited==="否"?'是':'否';
+   this.props.dispatch({
+     type:'user/updateUser',
+     payload:{
+       ...item,
+       isAudited
+     },
+     callback:()=>{
+       Message.success("操作成功")
+     }
+   });
+   setTimeout(()=>(this.props.history.push('list')),3000)
+  }
 
 //   handleCancel = () => {
 //     this.setState({ visible: false,record:{} });
@@ -121,11 +128,11 @@ const TextArea=Input.TextArea;
         render: (text, item) => {
           return (
             <Fragment>
-              <Button onClick={()=>this.showModal(item)} type="primary" 
+              <Button onClick={()=>this.Authorize(item)} type="primary" 
               style={{color:666,cursor:'pointer'}}>{item.isAudited==='否'&&item.role==='用户'?'授权':'取消权限'}</Button>&nbsp;&nbsp;|&nbsp;&nbsp;
               <Popconfirm
                 title="是否删除该条记录？"
-                onConfirm={() => this. removeUserRecord(item.id)}
+                onConfirm={() => this.removeUserRecord(item.id)}
               >
                 <Button type="danger">删除</Button>
               </Popconfirm>
@@ -135,8 +142,8 @@ const TextArea=Input.TextArea;
       },
     ]
 
-     const {global,pageBean,user}=this.props;
-     const userInfo=JSON.parse(sessionStorage.getItem('user'));
+     const {user}=this.props;
+     //const userInfo=JSON.parse(sessionStorage.getItem('user'));
      const {userList}=user;
     // const { visible, loading,record } = this.state;
     // console.log(this.props);
@@ -155,32 +162,7 @@ const TextArea=Input.TextArea;
          }
         >
         <Table columns={columns} rowKey="id" dataSource={userList}></Table>
-        {/* <Modal visible={visible} title={<b>消息详情</b>}
-        onOk={this.handleOk}
-        onCancel={this.handleCancel}
-        footer={[
-          <Button key="back" onClick={this.handleCancel}>
-              返回
-            </Button>,
-        ]}
-        >
-          <Form>
-          <FormItem label="标题" >
-              <Input placeholder="消息标题"  defaultValue={record.title}/>)}
-          </FormItem>
-            <FormItem  label="消息内容">
-            
-                <TextArea
-                  placeholder="消息内容"
-                  style={{ width: '70%' }}
-                  autosize={{ minRows: 2, maxRows: 6 }}
-                  defaultValue={record.content}
-               />
-             
-            </FormItem>
-    
-          </Form>
-        </Modal> */} 
+       
         </Card>
       </div>
     )

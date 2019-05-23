@@ -9,7 +9,7 @@ const categoryOptions=Object.entries(NOTICE_CATEGORY)
 @connect(({notice})=>({notice}))
 class NoticeForm extends React.Component{
     constructor(props){
-        super();
+        super(props);
         this.state={};
     }
 
@@ -28,7 +28,7 @@ class NoticeForm extends React.Component{
     
 
     render(){
-        const { form: { getFieldDecorator }, record } = this.props;
+        const { form: { getFieldDecorator }} = this.props;
         const formItemLayout = {
             labelCol: {
               xs: { span: 24 },

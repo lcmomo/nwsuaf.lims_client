@@ -1,14 +1,14 @@
 import React from 'react';
-import { Form, Input, Button,Select } from 'antd';
+import { Form, Input, Button,Select,InputNumber } from 'antd';
 import { connect } from 'dva/index';
-import {NOTICE_CATEGORY} from '../../utils/constant.js'
+import {DEVICE_CATEGORY} from '../../utils/constant.js'
 const FormItem=Form.Item;
-const {TextArea}=Input;
+
 const {Option}=Select;
-const categoryOptions=Object.entries(NOTICE_CATEGORY)
-@connect(({notice})=>({notice}))
-class NoticeForm extends React.Component{
-    constructor(props){
+const categoryOptions=Object.entries(DEVICE_CATEGORY)
+@connect(({device})=>({device}))
+class DeviceForm extends React.Component{
+    constructor(){
         super();
         this.state={};
     }
@@ -28,7 +28,7 @@ class NoticeForm extends React.Component{
     
 
     render(){
-        const { form: { getFieldDecorator }, record } = this.props;
+        const { form: { getFieldDecorator } } = this.props;
         const formItemLayout = {
             labelCol: {
               xs: { span: 24 },
@@ -41,62 +41,104 @@ class NoticeForm extends React.Component{
           };
         return (
             <Form onSubmit={this.handleSubmit.bind(this)} autoComplete="off">
-            <FormItem label="消息编号" {...formItemLayout}>
-              {getFieldDecorator('noticeno', {
+            <FormItem label="设备编号" {...formItemLayout}>
+              {getFieldDecorator('consumeno', {
                 initialValue: "",
                 rules: [
                   { type: 'string' },
-                  { required: true, message: '请输入消息编号' },
+                  { required: true, message: '请输入设备编号' },
                  
                 ],
-              })(<Input placeholder="请输入消息编号" style={{ width: '70%' }} />)}
+              })(<Input placeholder="请输入设备编号" style={{ width: '70%' }} />)}
             </FormItem>
-            <FormItem label="标题" {...formItemLayout}>
-              {getFieldDecorator('title', {
+            <FormItem label="设备名称" {...formItemLayout}>
+              {getFieldDecorator('consumeName', {
                 initialValue: "",
                 rules: [
                   { type: 'string' },
-                  { required: true, message: '请输入消息标题' },
-                  {
-                    max: 30,
-                    message: '标题不能超过30个字符',
-                  },
+                  { required: true, message: '请输入设备名称' },
+                  
                 ],
-              })(<Input placeholder="请输入消息标题" style={{ width: '70%' }} />)}
+              })(<Input placeholder="请输入设备名称" style={{ width: '70%' }} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="消息内容">
-              {getFieldDecorator('content', {
+            <FormItem {...formItemLayout} label="规格型号">
+              {getFieldDecorator('specs', {
                 initialValue: "",
                 rules: [
                   { type: 'string' },
-                  { required: true, message: '请输入消息内容' },
-                  {
-                    max: 500,
-                    message: '回复内容不能超过500个字符',
-                  },
+                  { required: true, message: '请输入设备规格型号' },
+                  
                 ],
               })(
-                <TextArea
-                  placeholder="请输入消息内容"
+                <Input
+                  placeholder="请输入设备规格型号"
                   style={{ width: '70%' }}
-                  autosize={{ minRows: 2, maxRows: 6 }}
+                  
                 />
               )}
             </FormItem>
-    
-            <FormItem label="消息类别" {...formItemLayout}>
+            <FormItem label="生产商" {...formItemLayout}>
+              {getFieldDecorator('producer', {
+                initialValue: "",
+                rules: [
+                  { type: 'string' },
+                 
+                  
+                ],
+              })(<Input placeholder="请输入生产商信息" style={{ width: '70%' }} />)}
+            </FormItem>
+            <FormItem label="数量" {...formItemLayout}>
+              {getFieldDecorator('amount', {
+                initialValue: 0,
+                rules: [
+                  { type: 'number' },
+                 
+                  
+                ],
+              })(<InputNumber placeholder="请选择数量" style={{ width: '70%' }} />)}
+            </FormItem>
+            <FormItem label="价格" {...formItemLayout}>
+              {getFieldDecorator('price', {
+                initialValue: 0,
+                rules: [
+                  { type: 'number' },
+                
+                ],
+              })(<InputNumber placeholder="请输入输入价格"  min={0} max={30}style={{ width: '70%' }} />)}
+            </FormItem>
+            <FormItem label="供应商" {...formItemLayout}>
+              {getFieldDecorator('supplyer', {
+                initialValue: "",
+                rules: [
+                  { type: 'string' },
+                  { required: true, message: '请输入供应商' },
+                  
+                ],
+              })(<Input placeholder="请输入供应商信息" style={{ width: '70%' }} />)}
+            </FormItem>
+            <FormItem label="类别" {...formItemLayout}>
           {getFieldDecorator('category', {
             initialValue: "",
           })(
-            <Select placeholder="请选择消息分类" allowClear style={{ width: 150 }}>
+            <Select placeholder="请选择设备分类" allowClear style={{ width: 150 }}>
               { categoryOptions.map(([key, value]) => (
-                <Option key={key} value={value}>
+                <Option key={key} value={key}>
                   {value}
                 </Option>
               ))}
             </Select>
           )}
         </FormItem>
+        <FormItem label="平台名称" {...formItemLayout}>
+              {getFieldDecorator('platname', {
+                initialValue: "",
+                rules: [
+                  { type: 'string' },
+                  { required: true, message: '请输入平台名称' },
+                 
+                ],
+              })(<Input placeholder="请输入平台名称" style={{ width: '70%' }} />)}
+            </FormItem>
 
         <FormItem label="备注" {...formItemLayout}>
               {getFieldDecorator('remark', {
@@ -106,7 +148,7 @@ class NoticeForm extends React.Component{
                  
                  
                 ],
-              })(<Input placeholder="消息备注" style={{ width: '70%' }} />)}
+              })(<Input placeholder="备注" style={{ width: '70%' }} />)}
             </FormItem>
     
             <FormItem {...formItemLayout} style={{ marginLeft: '29.2%' }}>
@@ -118,4 +160,4 @@ class NoticeForm extends React.Component{
         )
     }
 }
-export default Form.create()(NoticeForm);
+export default Form.create()(DeviceForm);

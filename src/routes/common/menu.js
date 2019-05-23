@@ -39,7 +39,7 @@ const userMenu=[
         children:[
             {
                 key:'orderlist',
-                path:'/index/order/index',
+                path:'/index/order/userlist',
                 name:'预约列表'
 
             }
@@ -112,7 +112,7 @@ const adminMenu=[
         children:[
             {
                 key:'orderlist',
-                path:'/index/order/index',
+                path:'/index/order/list',
                 name:'预约列表'
 
             }

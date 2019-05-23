@@ -1,11 +1,10 @@
 import React, { Component,Fragment } from 'react';
-import { Button, Card, Table, Popconfirm,Form,Input} from 'antd';
-import moment from 'moment/moment';
+import { Button, Card, Table, Popconfirm,notification} from 'antd';
+//import moment from 'moment/moment';
 import {connect} from 'dva';
-import withSearchAndPaging from '../../components/withSearchAndPaging';
+//import withSearchAndPaging from '../../components/withSearchAndPaging';
 import {getPathParams} from '../../components/_utils/pathTools.js'
-const FormItem=Form.Item;
-const TextArea=Input.TextArea;
+
 @connect(({plat,global,instrument})=>(
   {plat,global,instrument}
 ))
@@ -29,10 +28,13 @@ const TextArea=Input.TextArea;
     this.state={
       loading:false,
       visible:false,
-      record:{}
+      record:{},
+      userInfo:{}
     };
   }
   componentDidMount(){
+    const userInfo=JSON.parse(sessionStorage.getItem('user'));
+    this.setState({userInfo:userInfo})
    this.getInstrumentList();
   }
   
@@ -64,15 +66,44 @@ const TextArea=Input.TextArea;
 //     });
 //   }
 
-
+//添加平台信息
   addPlat=()=>{
     //this.props.history.push('addPlat');
   }
 
 
-  showPlatDatial=(item)=>{
-
+  IsAuduted=(item)=>{
+    const {isAudited}=this.state.userInfo;
+      if(isAudited==='是'){
+        this.props.history.push(`../../order/addOrder/${item.instruName}`);
+      }
+      else{
+         this.openNotification();
+      }
   }
+  toPlatChart=(item)=>{
+    this.props.history.push(`../../plat/usechart/${item.id}`);
+  }
+
+
+  //用户没有预约权限弹出提醒
+   openNotification = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => notification.close(key)}>
+        确定
+      </Button>
+    );
+    notification.open({
+      message: '通知提醒',
+      description:
+        '您还没有预约权限,请联系管理员申请',
+      btn,
+      key,
+      
+    });
+  };
+  
 //   showModal=(item)=>{
 //     this.setState({
 //       visible:true,
@@ -102,12 +133,12 @@ const TextArea=Input.TextArea;
         width:200,
         
       },
-      {
-        title:<b>状态</b>,
-        dataIndex:'status',
-        width:200,
+      // {
+      //   title:<b>状态</b>,
+      //   dataIndex:'status',
+      //   width:200,
         
-      },
+      // },
      
       {
         title:<b>备注</b>,
@@ -123,21 +154,23 @@ const TextArea=Input.TextArea;
         render: (text, item) => {
           return (
             <Fragment>
-              <Button  onClick={()=>this.showPlatDatial(item)} type="primary" 
+              <Button  onClick={()=>this.IsAuduted(item)} type="primary" 
               style={{color:666,cursor:'pointer', display:userInfo.role!=="用户"?'none':'normal'}}>预约</Button>
               <Popconfirm
                 title="是否删除该条记录？"
-                onConfirm={() => this. removePlatRecord(item.id)}
+                onConfirm={() => this.removePlatRecord(item.id)}
               >
                 <Button type="danger" style={{color:666,cursor:'pointer', display:userInfo.role==="用户"?'none':'normal'}}>删除</Button>
+                &nbsp;&nbsp;<Button onClick={()=>this.toPlatChart(item)} style={{color:666,cursor:'pointer', }}>使用情况</Button>
               </Popconfirm>
+              
             </Fragment>
           );
         },
       },
     ]
 
-      const {global,pageBean,instrument}=this.props;
+      const {instrument}=this.props;
       const userInfo=JSON.parse(sessionStorage.getItem('user'));
       const {instrumentList}=instrument;
     // const { visible, loading,record } = this.state;
@@ -149,32 +182,7 @@ const TextArea=Input.TextArea;
         
         >
         <Table columns={columns} rowKey="id" dataSource={instrumentList}></Table>
-        {/* <Modal visible={visible} title={<b>消息详情</b>}
-        onOk={this.handleOk}
-        onCancel={this.handleCancel}
-        footer={[
-          <Button key="back" onClick={this.handleCancel}>
-              返回
-            </Button>,
-        ]}
-        >
-          <Form>
-          <FormItem label="标题" >
-              <Input placeholder="消息标题"  defaultValue={record.title}/>)}
-          </FormItem>
-            <FormItem  label="消息内容">
-            
-                <TextArea
-                  placeholder="消息内容"
-                  style={{ width: '70%' }}
-                  autosize={{ minRows: 2, maxRows: 6 }}
-                  defaultValue={record.content}
-               />
-             
-            </FormItem>
-    
-          </Form>
-        </Modal> */} 
+      
         </Card>
       </div>
     )

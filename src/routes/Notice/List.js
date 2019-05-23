@@ -1,11 +1,11 @@
 import React, { Component,Fragment } from 'react'
 import { Button, Card, Table, Popconfirm, Modal,Form,Input,Message} from 'antd';
 
-import { Link } from 'dva/router';
+//import { Link } from 'dva/router';
 import { connect } from 'dva/index';
 import moment from 'moment/moment';
-import withSearchAndPaging from '../../components/withSearchAndPaging';
-import Filter from './Filter';
+//import withSearchAndPaging from '../../components/withSearchAndPaging';
+//import Filter from './Filter';
 
 const FormItem=Form.Item;
 const TextArea=Input.TextArea;
@@ -95,7 +95,7 @@ const TextArea=Input.TextArea;
         title:<b>类别</b>,
         dataIndex:'category',
         width:150,
-        render:(text,item)=>{
+        render:(text)=>{
           return text==='1'?'实验平台消息':'系统消息'
         }
       },
@@ -122,7 +122,7 @@ const TextArea=Input.TextArea;
               style={{color:666,cursor:'pointer'}}>详情</span><span style={{display:userInfo.role==='用户'?'none':'normal'}}>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <Popconfirm
                 title="是否删除该条记录？"
-                onConfirm={() => this. removeNoticeRecord(item.id)}
+                onConfirm={() => this.removeNoticeRecord(item.id)}
               >
                 <a  style={{color:666,cursor:'pointer',display:userInfo.role==='用户'?'none':'normal'}}>删除</a>
               </Popconfirm>
@@ -132,10 +132,10 @@ const TextArea=Input.TextArea;
       },
     ]
 
-    const {global,pageBean,notice}=this.props;
+    const {notice}=this.props;
     const userInfo=JSON.parse(sessionStorage.getItem('user'));
     const {noticeList}=notice;
-    const { visible, loading,record } = this.state;
+    const { visible,record } = this.state;
     console.log(this.props);
     console.log(process.env.NODE_ENV)
     return (
@@ -143,7 +143,7 @@ const TextArea=Input.TextArea;
         <Card title={<b>消息列表</b>}
          extra={
            <div 
-           //style={{display:userInfo.role==='1'?'none':'normal'}}
+           style={{display:userInfo.role==='用户'?'none':'normal'}}
            >
              <Button type="primary" onClick={this.addNotice}>
                新增消息
