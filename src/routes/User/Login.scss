@@ -1,12 +1,18 @@
 .normal {
     font-family: Georgia, sans-serif;
-    margin-top: 3em;
+    
     text-align: center;
+    background: url('../../assets/img/login_bg.jpg') no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    
 
     .account {
-        width:40%;
+        width:35%;
         border: 1px solid #eee;
        margin:0 auto;
+       opacity: 0.7;
+       background: #eee
        
       }
   }
@@ -15,19 +21,29 @@
     font-size: 2.5rem;
     font-weight: normal;
     letter-spacing: -1px;
+    margin-left:-20%;
+    padding-top:3em;
+    color:#eee;
+    text-shadow:4px 4px 5px rgb(27, 18, 18);
+    font-family: 'Times New Roman', Times, serif;
+    padding-bottom: 0.5em;
   }
  
   
   :global {
     .account-form {
       .ant-form-item {
-        margin-bottom: 10px;
+        
+        width:50%;
+        color: #000;
+        margin: 10px auto;
         .ant-form-item-label {
-          line-height: 20px;
+         
         }
       }
       .btn {
-        width: 100%;
+        width: 50%;
+        margin-left:60%;
       }
     }
   }

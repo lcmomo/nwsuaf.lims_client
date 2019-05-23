@@ -7,7 +7,7 @@ import UserLogo from '../components/GlobalHeader/index.js'
 import {getMenuData} from '../routes/common/menu.js'
 import { getMenuTreePath } from '../utils/index.js';
 import SubRoutes , { RedirectRoute }from '../utils/SubRoutes.js'
-
+import Logo from 'Assets/img/logo.png';
 const { Header, Sider, Content } = Layout;
 const MenuItem=Menu.Item;
 const SubMenu=Menu.SubMenu;
@@ -92,7 +92,11 @@ class BaseLayout extends Component {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className={styles.logo} />
+          <div className={styles.logo} >
+            <div className={styles.imglogo}>
+            <img src={Logo} />
+            </div>
+          
           {/* <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
               <Icon type="user" />
@@ -107,6 +111,12 @@ class BaseLayout extends Component {
               <span>nav 3</span>
             </Menu.Item>
           </Menu> */}
+              <div className={styles.logobox}>
+               
+              {user.role==='用户'?'预约系统':'后台管理'}
+              </div>
+          </div>
+          
 
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["notice"]}
           inlineCollapsed={this.state.opend}

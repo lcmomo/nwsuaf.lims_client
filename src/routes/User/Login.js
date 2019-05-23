@@ -51,12 +51,22 @@ const FormItem=Form.Item;
   render() {
 
     const {getFieldDecorator}=this.props.form;
+    const formItemLayout = {
+        labelCol: {
+          xs: { span: 24 },
+          sm: { span: 8 },
+        },
+        wrapperCol: {
+          xs: { span: 24 },
+          sm: { span: 16 },
+        },
+      };
     return (
-        <div className={styles.normal}>
-        <h1 className={styles.title}>实验平台预约管理系统</h1>
+        <div className={styles.normal} style={{height:window.innerHeight}}>
+        <h1 className={styles.title}>开放实验平台预约管理系统</h1>
         <div className={styles.account}>
-            <Form className="account-form">
-            <FormItem >
+        <Form className="account-form" {...formItemLayout}>
+            <FormItem  label="用户名">
             {getFieldDecorator('username',{
                 //initialValue:'test'
                 rules:[
@@ -75,7 +85,7 @@ const FormItem=Form.Item;
             />)}
             
             </FormItem>
-            <FormItem>
+            <FormItem  label="密码">
             {getFieldDecorator('password',{
                 rules: [
                 {
