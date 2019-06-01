@@ -90,7 +90,7 @@ class BaseLayout extends Component {
     const {app,routes}=this.props;
   
     return (
-      <Layout>
+      <Layout style={{height:window.innerHeight}}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className={styles.logo} >
             <div className={styles.imglogo}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button,DatePicker,Message } from 'antd';
+import { Form, Input, Button,DatePicker,Message ,Card} from 'antd';
 import mock from 'mockjs'
 import { connect } from 'dva/index';
 //import {Order_CATEGORY} from '../../utils/constant.js'
@@ -96,6 +96,7 @@ class OrderForm extends React.Component{
           };
           const {userInfo,instrName}=this.state;
         return (
+          <Card title={<b>预约申请</b>}>
             <Form onSubmit={this.handleSubmit.bind(this)} autoComplete="off">
             <FormItem label="仪器名称" {...formItemLayout}>
               {getFieldDecorator('instrName', {
@@ -105,7 +106,7 @@ class OrderForm extends React.Component{
                   { required: true, message: '不能为空' },
                  
                 ],
-              })(<Input placeholder="请输入仪器名称" style={{ width: '70%' }} />)}
+              })(<Input placeholder="请输入仪器名称" disabled style={{ width: '70%' }} />)}
             </FormItem>
             <FormItem label="用户" {...formItemLayout}>
               {getFieldDecorator('username', {
@@ -115,7 +116,7 @@ class OrderForm extends React.Component{
                   { required: true, message: '用户名不能为空' },
                   
                 ],
-              })(<Input placeholder="请输入消息标题" style={{ width: '70%' }} />)}
+              })(<Input placeholder="" disabled style={{ width: '70%' }} />)}
             </FormItem>
             <Form.Item label="使用时间" {...formItemLayout} >
                   {getFieldDecorator('useTime', rangeConfig)(
@@ -165,6 +166,7 @@ class OrderForm extends React.Component{
               </Button>
             </FormItem>
           </Form>
+          </Card>
         )
     }
 }

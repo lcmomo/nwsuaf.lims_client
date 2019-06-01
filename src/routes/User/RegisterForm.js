@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button,Card ,Message} from 'antd';
 import { connect } from 'dva/index';
+import mock from 'mockjs'
 //import CurrentUserForm from './currentUserForm.js'
 import {encrypt,decrypt} from '../../utils/aesutil.js'
 const FormItem=Form.Item;
@@ -17,57 +18,52 @@ class CreateUser extends React.Component{
     componentDidMount(){
         const userInfo=JSON.parse(sessionStorage.getItem('user'));
        
-       this.getcurrentUser(userInfo);
+       
     }
 
-    shouldComponentUpdate(nextProps,nextState){
-        if(nextState.userInfo!==this.state.userInfo);
-        return true;
-    }
+    
 
-   async getcurrentUser(userInfo){
-   
-    let res={};
-    await  this.props.dispatch({
-        type:'user/fetchCurrentUser',
-        payload:{ id:userInfo.id},
-        callback: result => {
-            res = result;
-          },
-    })
- 
-    sessionStorage.setItem("user",JSON.stringify(res.data))
-    this.setState({userInfo:res.data});
-    return res;
-
-    }
-    submitForm = e => {
+  
+    findByName = e => {
        // const userInfo=JSON.parse(sessionStorage.getItem('user'));
         e.preventDefault();
         this.props.form.validateFields((errors, params) => {
-          if (errors) {
-              
-            return;
-          }
+          
           console.log("err")
           this.props.dispatch({
-            type: 'user/updateUser',
+            type: 'user/findByUsername',
             payload: {
                 ...params,
-                password: encrypt(params.password)
+                
             },
             
-            callback: () => {
-                Message.success("修改成功")
+            callback: (res) => {
+               if(res.message!=='SUCCESS'){
+                   Message.error('用户名已被注册');
+               }
              
             },
           });
          
         });
        
-      setTimeout(()=>( this.props.history.push('detail')),5000)
-       
       };
+
+      handleSubmit(e) {
+        e.preventDefault();
+        this.props.form.validateFields((errors, params) => {
+          if (errors) {
+            return;
+          }
+          this.props.submitForm({
+            ...params,
+            password: encrypt(params.password)
+          });
+        });
+      }
+    
+
+      
     render(){
         //const userInfo=this.props.currentUser;
         //const currentUser=JSON.parse(sessionStorage.getItem('user'));
@@ -87,48 +83,44 @@ class CreateUser extends React.Component{
        
         return (
             <div>
-                <Card title={<b>我的信息</b>}>
+                <Card >
       
      
             
                     <Form 
                     onSubmit={
-                        this.submitForm
+                        this.handleSubmit.bind(this)
                         
                     } autoComplete="off">
+                   
                     <FormItem  {...formItemLayout}>
-                    {getFieldDecorator('id', {
-                        initialValue: currentUser.id!==undefined?currentUser.id:1,
-                    
-                    })(<Input placeholder="用户编号" type="hidden" style={{ width: '70%' }} />)}
-                    </FormItem>
-                    <FormItem label="用户编号" {...formItemLayout}>
                     {getFieldDecorator('userno', {
-                        //initialValue: currentUser.userno!==undefined?currentUser.userno:'',
-                        initialValue:currentUser.userno,
+                        
+                        initialValue:'2'+ mock.Random.string("number",7),
                         rules: [
                         { type: 'string' },
                         { required: true, message: '请输入用户编号' },
                         
                         ],
-                    })(<Input disabled placeholder="用户编号" style={{ width: '70%' }} />)}
+                    })(<Input type="hidden" placeholder="用户编号" style={{ width: '70%' }} />)}
                     </FormItem>
                     <FormItem label="用户名" {...formItemLayout}>
                     {getFieldDecorator('username', {
-                        initialValue:  currentUser.username!==undefined?currentUser.username:'',
+                        initialValue:  '',
                         rules: [
                         { type: 'string' },
                         { required: true, message: '请输入用户名' },
                         
                         ],
-                    })(<Input placeholder="请输入用户姓名" style={{ width: '70%' }} />)}
+                    })(<Input placeholder="请输入用户姓名" style={{ width: '70%' }} onBlur={this.findByName.bind(this)} />)}
                     </FormItem>
                     
                     <FormItem label="电话" {...formItemLayout}>
                     {getFieldDecorator('phone', {
-                        initialValue: currentUser.phone!==undefined?currentUser.phone:'',
+                        initialValue: '',
                         rules: [
                         { type: 'string' },
+                        { required: true, message: '请输入电话' },
                         
                         
                         ],
@@ -137,9 +129,10 @@ class CreateUser extends React.Component{
 
                 <FormItem label="邮箱" {...formItemLayout}>
                     {getFieldDecorator('email', {
-                        initialValue: currentUser.email!==undefined?currentUser.email:'',
+                        initialValue: '',
                         rules: [
                         { type: 'string' },
+                        { required: true, message: '请输入邮箱' },
                         
                         
                         ],
@@ -147,18 +140,19 @@ class CreateUser extends React.Component{
                 </FormItem>
                 <FormItem label="密码" {...formItemLayout}>
                     {getFieldDecorator('password', {
-                        initialValue: currentUser.password!==undefined?decrypt(currentUser.password):'',
+                        initialValue:'',
                         rules: [
                         { type: 'string' },
+                        { required: true, message: '请输入密码' },
                         
                         
                         ],
-                    })(<Input placeholder="密码" visibilityToggle ="true" type="password"style={{ width: '70%' }} />)}
+                    })(<Input.Password placeholder="密码" type="password" visibilityToggle="true" style={{ width: '70%' }} />)}
                 </FormItem>
                 
                     <FormItem {...formItemLayout} style={{ marginLeft: '29.2%' }}>
                     <Button type="primary" htmlType="submit" style={{ margin: 'auto' }}>
-                       保存
+                       注册
                     </Button>
                     </FormItem>
                 </Form>

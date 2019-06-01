@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button,Select } from 'antd';
 import { connect } from 'dva/index';
+import mock from 'mockjs'
 import {User_CATEGORY,ORDER_CATEGORY} from '../../utils/constant.js'
 
 
@@ -46,15 +47,15 @@ class UserForm extends React.Component{
           };
         return (
             <Form onSubmit={this.handleSubmit.bind(this)} autoComplete="off">
-            <FormItem label="用户编号" {...formItemLayout}>
+            <FormItem label="" {...formItemLayout}>
               {getFieldDecorator('userno', {
-                initialValue: "",
+                initialValue:'2'+ mock.Random.string("number",7),
                 rules: [
                   { type: 'string' },
                   { required: true, message: '请输入用户编号' },
                  
                 ],
-              })(<Input placeholder="用户编号" style={{ width: '70%' }} />)}
+              })(<Input type="hidden" placeholder="用户编号" style={{ width: '70%' }} />)}
             </FormItem>
             <FormItem label="用户名" {...formItemLayout}>
               {getFieldDecorator('username', {

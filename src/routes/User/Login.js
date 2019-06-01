@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Input, Button,Message,Icon } from 'antd';
 import { connect } from 'dva';
+import {Link} from 'dva/router'
 import Request from '../../utils/request';
-
+import {encrypt,decrypt} from '../../utils/aesutil.js'
 
 import styles from './Login.scss';
 
@@ -17,10 +18,16 @@ const FormItem=Form.Item;
     this.props.form.validateFields((err,values)=>{
        
         if(!err){
-            console.log(values);
-            Request('http://120.95.133.187:8080/user/login',{method:'POST',
            
-            body:values}).then((res)=>{
+            Request('http://localhost:8080/user/login',
+            {
+                method:'POST',
+           
+            body:{
+                ...values,
+                password: encrypt(values.password)
+            }
+            }).then((res)=>{
                
            
                 const user=res.data.data;
@@ -28,20 +35,28 @@ const FormItem=Form.Item;
                 if(res.data.message==='SUCCESS'){
                     //localStorage.setItem('user',JSON.stringify(user));
                     sessionStorage.setItem('user',JSON.stringify(user))
-                    console.log(this.props)
+                   
                     this.props.dispatch({
                         type:'global/setUserInfo',
                         payload:user
                     }).then(()=>{
                         Message.success('登录成功');
-                        this.props.history.push('/index/notice/list');
+                        setTimeout(()=>( this.props.history.push('/index/notice/list')),1000);
+                       
                       
                     })
                 }else{
-                    Message.error('学工号或密码错误')
+                    if(res.data.message==='err')
+                        Message.error("密码错误，请重试");
+                    else if(res.data.message==='unregister'){
+                        Message.error("您还未注册，即将跳转至注册页面");
+                        setTimeout(()=>( this.props.history.push('/register')),1000)
+                    }
                 }
 
 
+            }).catch(err=>{
+                Message.error('系统错误');
             })
            
         }
@@ -99,18 +114,20 @@ const FormItem=Form.Item;
                     '请输入正确的密码格式：6-16位字母、数字或特殊字符 _-.'
                 }
                 ]
-            })( <Input
+            })( <Input.Password
                 placeholder="密码" type="password"
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 />)}
             
             </FormItem>
             
-            <FormItem>
+            <FormItem >
             <Button  className="btn" type="primary" onClick={this.handleSubmit}>
                 登录
-                </Button>
+            </Button>
             </FormItem>
+            <Link to="/forgetPassword"><span className={styles.forget}>忘记密码?</span></Link>
+            
             </Form>
         </div>
       </div>

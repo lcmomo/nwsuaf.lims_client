@@ -89,7 +89,7 @@ import Test from '../../components/charts/Bar'
               ydata1:data1,
               ydata2:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6],
             }
-          }}/>)
+          }}/>
        
         
         </Card>

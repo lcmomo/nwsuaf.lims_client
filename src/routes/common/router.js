@@ -10,8 +10,19 @@
         {
           path:'/login',
           component:()=>import('../User/Login.js'),
-          model:[],
+          model:[import('../../models/user')],
         },
+        {
+          path:'/register',
+          component:()=>import('../User/Register.js'),
+          model:[import('../../models/user')],
+        },
+        {
+          path:'/forgetPassword',
+          component:()=>import('../User/ForgetPassword.js'),
+          model:[import('../../models/user')],
+        },
+
         {
           path:'/index',
           component:()=>import('../../layouts/BaseLayout.js'),

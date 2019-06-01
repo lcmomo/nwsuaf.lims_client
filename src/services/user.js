@@ -32,3 +32,14 @@ export async function updateUserI(params){
         body:params,
     }).then(res=>res.data);
 }
+
+
+export async function fetchByUserNameI(params){
+    return request(`${baseUrl}/user/find?${stringify(params)}`).then(res=>res.data);
+}
+
+
+
+export async function fetchUserByPhoneI(params){
+    return request(`${baseUrl}/user/findByPhone?${stringify(params)}`).then(res=>res.data);
+}

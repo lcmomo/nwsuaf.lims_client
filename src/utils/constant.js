@@ -26,3 +26,5 @@ export const ORDER_STATUS={
     2:'审核通过 未使用',
     3:'已使用'
 }
+
+export const PUB_KEY="abcd1234abcd1234";

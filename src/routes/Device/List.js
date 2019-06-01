@@ -66,7 +66,9 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
 
 
   
-
+  addDevice=()=>{
+    this.props.history.push('/index/device/addDevice');
+  }
   
 
  
@@ -130,11 +132,12 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
         title: <b>操作</b>,
         dataIndex: 'operation',
         width: '130px',
-        render: ( item) => {
+        render: ( text,item) => {
           return (
             <Fragment>
              <Link to={`/index/device/updateDevice/${item.id}`} 
-              style={{color:666,cursor:'pointer'}}>编辑</Link><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+              style={{color:666,cursor:'pointer'}}>编辑</Link>
+              <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <Popconfirm
                 title="是否删除该条记录？"
                 onConfirm={() => this.removeDeviceRecord(item.id)}

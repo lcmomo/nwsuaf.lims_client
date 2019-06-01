@@ -4,7 +4,9 @@ import {
   createUserI,
   deleteUserRecordI,
   updateUserI,
-  fetchCurrentUserI
+  fetchCurrentUserI,
+  fetchByUserNameI,
+  fetchUserByPhoneI
 } from '../services/user';
 export default {
 
@@ -46,6 +48,22 @@ export default {
           callback(results);
         }
       },
+
+      //根据用户名找
+      *findByUsername({payload,callback},{call}){
+        const results=yield call(fetchByUserNameI,payload);
+       
+        if (typeof callback === 'function') {
+          callback(results);
+        }
+      },
+      *findUserByPhone({payload,callback},{call,put}){
+        const results=yield call(fetchUserByPhoneI,payload);
+       
+        if (typeof callback === 'function') {
+          callback(results);
+        }
+      },
       //添加用户列表
       *createUser({payload,callback},{call}){
         const response=yield call(createUserI,payload);
@@ -74,7 +92,7 @@ export default {
         const response=yield call(updateUserI,payload);
         if(response.message==="SUCCESS"){
           if (typeof callback === 'function') {
-            callback();
+            callback(response);
           }
         }
       }

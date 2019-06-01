@@ -111,7 +111,7 @@ class NoticeForm extends React.Component{
     
             <FormItem {...formItemLayout} style={{ marginLeft: '29.2%' }}>
               <Button type="primary" htmlType="submit" style={{ margin: 'auto' }}>
-                提交
+                发布
               </Button>
             </FormItem>
           </Form>
