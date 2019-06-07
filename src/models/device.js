@@ -92,7 +92,7 @@ export default {
         const {list,pageNum,pageSize}=action.payload.data;
       // console.log(list);
       
-        //console.log(list);
+        console.log(action.payload);
         return {
           ...state,
           deviceList:list,

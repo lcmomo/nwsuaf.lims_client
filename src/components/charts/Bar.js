@@ -17,7 +17,7 @@ class Test extends React.Component {
    
     // 绘制图表
     myChart.setOption({
-        title: { text: '指定实验仪器过去一周使用情况' },
+        title: { text: this.props.title },
         tooltip : {
           trigger: 'axis'
       },
@@ -27,7 +27,7 @@ class Test extends React.Component {
       toolbox: {
           show : true,
           feature : {
-              dataView : {show: true, readOnly: false},
+              dataView : {show: false, readOnly: false},
               magicType : {show: true, type: ['line', 'bar']},
               restore : {show: true},
               saveAsImage : {
@@ -49,7 +49,7 @@ class Test extends React.Component {
       ],
         series : [
           {
-              name:'预约数',
+              name:this.props.legend,
               type:'bar',
               data: this.props.data.ydata.ydata1,
               markPoint : {
@@ -66,22 +66,7 @@ class Test extends React.Component {
               barMaxWidth:40,
               barCategoryGap:'50%'
           },
-        //   {
-        //       name:'降水量',
-        //       type:'bar',
-        //       data: this.props.data.ydata.ydata2,
-        //       markPoint : {
-        //           data : [
-        //             {type : 'max', name: '最大值'},
-        //             {type : 'min', name: '最小值'}
-        //           ]
-        //       },
-        //       markLine : {
-        //           data : [
-        //               {type : 'average', name : '平均值'}
-        //           ]
-        //       }
-        //   },
+        
       ]
     });
 }

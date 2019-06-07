@@ -90,7 +90,7 @@ class NoticeForm extends React.Component{
           })(
             <Select placeholder="请选择消息分类" allowClear style={{ width: 150 }}>
               { categoryOptions.map(([key, value]) => (
-                <Option key={key} value={value}>
+                <Option key={key} value={key}>
                   {value}
                 </Option>
               ))}

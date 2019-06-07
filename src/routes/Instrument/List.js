@@ -73,7 +73,7 @@ import{Link} from 'dva/router'
       {
         title:<b>编号</b>,
         dataIndex:'instrumentno',
-        width:150
+        width:130
 
       },
       {
@@ -91,7 +91,7 @@ import{Link} from 'dva/router'
       {
         title:<b>备注</b>,
         dataIndex:'remark',
-        width:150
+        
       
       },
      
@@ -99,7 +99,7 @@ import{Link} from 'dva/router'
         title: <b>操作</b>,
         dataIndex: 'operation',
         align:'center',
-        width: '130px',
+        width: 180,
         render: (text, item) => {
           return (
             <Fragment>

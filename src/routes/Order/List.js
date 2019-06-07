@@ -109,6 +109,15 @@ import {ORDER_STATUS} from '../../utils/constant.js'
   handleCancel = () => {
     this.setState({ visible: false,record:{} });
   };
+
+
+
+
+
+
+
+
+  
   render() {
     const columns=[
       {
@@ -147,6 +156,10 @@ import {ORDER_STATUS} from '../../utils/constant.js'
       {
         title:'状态',
         dataIndex:'status',
+        filters:[{text:'审核中',value:'1'},{text:'审核通过 未使用',value:'2'},
+        {text:'已使用',value:'3'},{text:'已取消',value:'4'}
+      ],
+      onFilter:(value,record)=>record.status.indexOf(value)===0,
         render:(text)=>(ORDER_STATUS[text])
       },
       {

@@ -79,7 +79,7 @@ const FormItem=Form.Item;
       };
     return (
         <div className={styles.normal} style={{height:window.innerHeight}}>
-        <h1 className={styles.title}>开放实验平台预约管理系统</h1>
+        <h1 className={styles.title}>科研实验平台预约管理系统</h1>
         <div className={styles.account}>
             <div className={styles.find}> 密码找回</div>
         <Form className="account-form" {...formItemLayout} onSubmit={this.handleSubmit.bind(this)} >

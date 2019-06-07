@@ -2,8 +2,8 @@
 
 const userMenu=[
     {
-        key:'home',
-        path:'home',
+        key:'user',
+        path:'user',
         name:'个人中心' ,
         icon:'solution',
         children:
@@ -33,7 +33,7 @@ const userMenu=[
     },
     {
         key:'order',
-        path:'orderrecode',
+        path:'order',
         name:'我的预约记录',
         icon:'team',
         children:[
@@ -46,8 +46,8 @@ const userMenu=[
         ]
     },
     {
-        key:'platinfo',
-        path:'platinfo',
+        key:'plat',
+        path:'plat',
         name:'平台信息',
         icon:'solution',
         children:[

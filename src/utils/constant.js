@@ -24,7 +24,8 @@ export const DEVICE_CATEGORY={
 export const ORDER_STATUS={
     1:'审核中',
     2:'审核通过 未使用',
-    3:'已使用'
+    3:'已使用',
+    4:'已取消'
 }
 
 export const PUB_KEY="abcd1234abcd1234";

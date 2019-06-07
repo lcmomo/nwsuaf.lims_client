@@ -103,13 +103,16 @@ import { connect } from 'dva/index';
         title:<b>身份</b>,
         dataIndex:'role',
         width:150,
-        
+        filters:[{text:'用户',value:'用户'},{text:'负责人',value:'负责人'}],
+        onFilter:(value,record)=>record.role.indexOf(value)===0,
       },
      
       {
         title:<b>预约权限</b>,
         dataIndex:'isAudited',
-        width:150
+        width:150,
+        filters:[{text:'有',value:'是'},{text:'无',value:'否'}],
+        onFilter:(value,record)=>record.isAudited.indexOf(value)===0,
       
       },
       {

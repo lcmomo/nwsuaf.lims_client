@@ -153,7 +153,7 @@ class CreateUser extends React.Component{
                         
                         
                         ],
-                    })(<Input placeholder="密码" visibilityToggle ="true" type="password"style={{ width: '70%' }} />)}
+                    })(<Input.Password placeholder="密码" visibilityToggle ="true" style={{ width: '70%' }} />)}
                 </FormItem>
                 
                     <FormItem {...formItemLayout} style={{ marginLeft: '29.2%' }}>

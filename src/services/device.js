@@ -1,8 +1,9 @@
 import {stringify} from 'qs';
 import request from '../utils/request';
 
-const baseUrl="http://localhost:8080";
-
+import { getItemEnv}  from './index.js'
+const baseUrl=getItemEnv()==='development'?"http://120.95.133.187:8080":'http://59.110.141.166:8080';
+//const baseUrl=getItemEnv()==='development'?"http://localhost:8080":'http://localhost:8080'
 export async function fetchDeviceListI(params){
     return request(`${baseUrl}/device/list?${stringify(params)}`).then(res=>res.data);
 }

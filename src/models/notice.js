@@ -64,9 +64,9 @@ export default {
       },
 
       saveNoticeList(state,action){
-        console.log("action");
+        
         const {list,pageNum,pageSize}=action.payload.data;
-       console.log(action.payload)
+       console.log(action.payload.data);
         //console.log(list);
         return {
           ...state,

@@ -77,17 +77,23 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
       {
         title:<b>编号</b>,
         dataIndex:'consumeno',
-        width:120
+        width:120,
+        fixed:'left',
+
 
       },
       {
         title:<b>名称</b>,
         dataIndex:'consumeName',
-        width:150
+        width:150,
+        
       },
       {
         title:<b>类别</b>,
         dataIndex:'category',
+        filters:[{text:'耗材类',value:'1'},{text:'试剂类',value:'2'},
+        {text:'配件类',value:'3'},{text:'维修保养类',value:'4'}],
+        onFilter:(value,record)=>record.category.indexOf(value)===0,
         width:120,
         render:(text)=>{
           return DEVICE_CATEGORY[text];
@@ -106,11 +112,13 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
       },
       {
         title:<b>供应商</b>,
-        dataIndex:'supplyer'
+        dataIndex:'supplyer',
+        width:180
       },
       {
         title:<b>平台名称</b>,
-        dataIndex:'platname'
+        dataIndex:'platname',
+        width:180
       },
       {
         title:<b>单价(元)</b>,
@@ -126,12 +134,14 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
       },
       {
         title:<b>备注</b>,
-        dataIndex:'remark'
+        dataIndex:'remark',
+        width:120
       },
       {
         title: <b>操作</b>,
         dataIndex: 'operation',
         width: '130px',
+        fixed:'right',
         render: ( text,item) => {
           return (
             <Fragment>
@@ -154,7 +164,7 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
     //const userInfo=JSON.parse(sessionStorage.getItem('user'));
     const {deviceList}=device;
     //const { visible, loading,record } = this.state;
-    console.log(this.props);
+    //console.log(this.props);
     console.log(process.env.NODE_ENV)
     return (
       <div>
@@ -169,7 +179,7 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
            </div>
          }
         >
-          <Table columns={columns} rowKey="id" dataSource={deviceList}></Table>
+          <Table columns={columns} rowKey="id" dataSource={deviceList} scroll={{x:1366}}></Table>
        
         </Card>
       </div>

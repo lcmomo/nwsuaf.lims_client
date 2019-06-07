@@ -18,6 +18,7 @@ class BaseLayout extends Component {
       collapsed: false,
       opend:false,
       selectKeys:[],
+      openKeys:[],
       userInfo:{}
     }
   }
@@ -28,9 +29,12 @@ class BaseLayout extends Component {
       collapsed: !this.state.collapsed,
     });
   };
-  handleMenuClick=()=>{
+  handleMenuClick=(e)=>{
+    console.log(e.keyPath[1]);
+    console.log("w")
     this.setState({
      opend: true,
+      openKeys:[e.keyPath[1]]
     });
   }
 
@@ -57,9 +61,14 @@ class BaseLayout extends Component {
       // 根据'/'把路由地址分割成一个数组
       const temp = pathname.split('/');
       // 如果数组的长度小于2,表示的是只有根路径/,设置为Home. 否则取数组中第二个值
-      const key = temp && temp.length < 2 ? 'home' : temp[1];
+      const key = temp && temp.length < 2 ? 'index' : temp[temp.length-1];
+      const open=temp&&temp.length<2?'notice':temp[temp.length-2];
+      // console.log(this.props);
+      // console.log("key");
+      // console.log(open);
       this.setState({
-        selectedKeys: [key]
+        selectedKeys: [key],
+        
       });
     }
 
@@ -86,7 +95,7 @@ class BaseLayout extends Component {
     const user=JSON.parse(sessionStorage.getItem('user'));
     const menudata=getMenuData(user.role);
    
-    console.log(moment(user.redate).format('YYYY-MM-DD HH:mm'))
+    
     const {app,routes}=this.props;
   
     return (
@@ -118,12 +127,14 @@ class BaseLayout extends Component {
           </div>
           
 
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["notice"]}
+          <Menu theme="dark" mode="inline" 
+          defaultSelectedKeys={['notice']}
           inlineCollapsed={this.state.opend}
-          defaultOpenKeys={["notice"]}
+          defaultOpenKeys={this.state.openKeys}
           onClick={this.handleMenuClick}
           //defaultSelectedKeys={['home']}
-          selectedKeys={this.state.selectedKeys}
+          //selectedKeys={this.state.selectedKeys}
+          //openKeys={this.state.openKeys}
           
           >
 

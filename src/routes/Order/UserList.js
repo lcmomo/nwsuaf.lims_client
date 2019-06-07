@@ -97,6 +97,23 @@ import {ORDER_STATUS} from '../../utils/constant.js'
     setTimeout(()=>(this.props.history.push('userlist')),1000)
   }
 
+
+  toCancle=(item)=>{
+    this.props.dispatch({
+      type:'order/updateOrder',
+      payload:{
+        ...item,
+        status:"4"
+      },
+      callback:()=>{
+        Message.success('操作成功');
+      }
+    }
+
+    )
+    setTimeout(()=>(this.props.history.push('userlist')),1000)
+  }
+
   handleCancel = () => {
     this.setState({ visible: false,record:{} });
   };
@@ -134,6 +151,10 @@ import {ORDER_STATUS} from '../../utils/constant.js'
       {
         title:'状态',
         dataIndex:'status',
+        filters:[{text:'审核中',value:'1'},{text:'审核通过 未使用',value:'2'},
+          {text:'已使用',value:'3'},{text:'已取消',value:'4'}
+        ],
+        onFilter:(value,record)=>record.status.indexOf(value)===0,
         render:(text)=>(ORDER_STATUS[text])
       },
       {
@@ -153,7 +174,12 @@ import {ORDER_STATUS} from '../../utils/constant.js'
               style={{color:'#40a9ff',cursor:'pointer',
               display:item.status==='2'?'normal':'none'
               }}>使用完毕</Button>
-             
+              
+              <Button  onClick={()=>this.toCancle(item)} 
+              style={{color:'#40a9ff',cursor:'pointer',
+              display:item.status==='1'?'normal':'none'
+              }}>取消预约</Button>
+              
             </Fragment>
           );
         },

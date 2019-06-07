@@ -83,17 +83,22 @@ const TextArea=Input.TextArea;
       {
         title:<b>标题</b>,
         dataIndex:'title',
-        width:180
+        width:180,
+        key:'title'
 
       },
       {
         title:<b>内容</b>,
         dataIndex:'content',
-        width:400
+        width:400,
+        key:'content'
       },
       {
         title:<b>类别</b>,
         dataIndex:'category',
+        key:'category',
+        filters:[{text:'实验平台消息',value:'1'},{text:'系统消息',value:'2'}],
+        onFilter:(value,record)=>record.category.indexOf(value)===0,
         width:150,
         render:(text)=>{
           return text==='1'?'实验平台消息':'系统消息'
@@ -109,12 +114,13 @@ const TextArea=Input.TextArea;
       },
       {
         title:<b>备注</b>,
-        dataIndex:'remark'
+        dataIndex:'remark',
+        width:100,
       },
       {
         title: <b>操作</b>,
         dataIndex: 'operation',
-        //width: '130px',
+        width: 130,
         render: (text, item) => {
           return (
             <Fragment>

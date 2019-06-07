@@ -26,7 +26,7 @@
         {
           path:'/index',
           component:()=>import('../../layouts/BaseLayout.js'),
-          model:[],
+          model:[import('../../models/unread')],
           routes:[
             //消息管理
             {
@@ -207,6 +207,11 @@
             {
               path:'/index/repair/updateRepair/:id',
               component:()=>import('../Repair/Update.js'),
+              model:[import('../../models/repair')]
+            },
+            {
+              path:'/index/repair/repairData/',
+              component:()=>import('../Repair/RepairData.js'),
               model:[import('../../models/repair')]
             },
 
