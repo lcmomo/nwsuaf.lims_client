@@ -99,6 +99,11 @@
               component:()=>import('../Instrument/Update.js'),
               model:[import('../../models/instrument')]
             },
+            {
+              path:'/index/instrument/instrumentData',
+              component:()=>import('../Instrument/InstrumentData.js'),
+              model:[import('../../models/instrument')]
+            },
             
             //设备管理
             {
@@ -114,6 +119,11 @@
             {
               path:'/index/device/updateDevice/:id',
               component:()=>import('../Device/Update.js'),
+              model:[import('../../models/device')]
+            },
+            {
+              path:'/index/device/deviceData',
+              component:()=>import('../Device/DeviceData.js'),
               model:[import('../../models/device')]
             },
 
@@ -209,11 +219,22 @@
               component:()=>import('../Repair/Update.js'),
               model:[import('../../models/repair')]
             },
+            // {
+            //   path:'/index/repair/repairData/',
+            //   component:()=>import('../Repair/RepairDeviceData.js'),
+            //   model:[import('../../models/repair')]
+            // },
+
             {
-              path:'/index/repair/repairData/',
-              component:()=>import('../Repair/RepairData.js'),
+              path:'/index/repair/repairDeviceData/',
+              component:()=>import('../Repair/RepairDeviceData.js'),
               model:[import('../../models/repair')]
-            },
+            }, 
+            {
+              path:'/index/repair/repairInstrumentData/',
+              component:()=>import('../Repair/RepairInstrumentData.js'),
+              model:[import('../../models/repair')]
+            },            
 
 
           ]

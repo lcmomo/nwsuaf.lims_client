@@ -21,7 +21,7 @@ constructor(){
     this.fetchUnread();
   }
   fetchUnread(){
-    let res={}
+  
     const userInfo =JSON.parse(sessionStorage.getItem('user'));
     this.props.dispatch({
       type:'unread/findByUsername',
@@ -38,20 +38,12 @@ constructor(){
     })
     console.log(this.props);
   }
-  content=()=>{
-    const {notice}=this.state;
-    return (
-      notice.map((item)=>{
-      <span key={item.key}>{item.content}-{item.time}</span>
-      })
-    )
-  }
    
   render() {
 
     const userInfo =JSON.parse(sessionStorage.getItem('user'));
     const menu = (
-      <Menu className={styles.menu} selectedKeys={[]}>
+      <Menu className={styles.menu} selectedKeys={['']}>
         <Menu.Item>
           <Link to={`#`}>
             <Icon type="download" />我的下载

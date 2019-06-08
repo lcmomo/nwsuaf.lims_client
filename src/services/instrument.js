@@ -1,8 +1,8 @@
 import {stringify} from 'qs';
 import request from '../utils/request';
 import { getItemEnv}  from './index.js'
-const baseUrl=getItemEnv()==='development'?"http://120.95.133.187:8080":'http://59.110.141.166:8080';
-//const baseUrl=getItemEnv()==='development'?"http://localhost:8080":'http://localhost:8080'
+//const baseUrl=getItemEnv()==='development'?"http://120.95.133.187:8080":'http://59.110.141.166:8080';
+const baseUrl=getItemEnv()==='development'?"http://localhost:8080":'http://localhost:8080'
 
 export async function fetchInstrumentListI(params){
     return request(`${baseUrl}/instrument/list?${stringify(params)}`).then(res=>res.data);

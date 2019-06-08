@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Input, Button,Message,Icon } from 'antd';
 import { connect } from 'dva/index';
 
-import Request from '../../utils/request';
-import {encrypt,decrypt} from '../../utils/aesutil.js'
+
+import {encrypt} from '../../utils/aesutil.js'
 
 import styles from './ForgetPassword.less';
 
@@ -79,7 +79,7 @@ const FormItem=Form.Item;
       };
     return (
         <div className={styles.normal} style={{height:window.innerHeight}}>
-        <h1 className={styles.title}>科研实验平台预约管理系统</h1>
+        <h1 className={styles.title}>科研实验平台管理系统</h1>
         <div className={styles.account}>
             <div className={styles.find}> 密码找回</div>
         <Form className="account-form" {...formItemLayout} onSubmit={this.handleSubmit.bind(this)} >

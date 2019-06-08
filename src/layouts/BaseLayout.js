@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import moment from 'moment/moment'
+
 import { Layout, Menu, Icon,Breadcrumb,Button} from 'antd';
 import {Link,Switch} from 'dva/router'
 import styles from './BaseLayout.less'
@@ -62,7 +62,7 @@ class BaseLayout extends Component {
       const temp = pathname.split('/');
       // 如果数组的长度小于2,表示的是只有根路径/,设置为Home. 否则取数组中第二个值
       const key = temp && temp.length < 2 ? 'index' : temp[temp.length-1];
-      const open=temp&&temp.length<2?'notice':temp[temp.length-2];
+      //const open=temp&&temp.length<2?'notice':temp[temp.length-2];
       // console.log(this.props);
       // console.log("key");
       // console.log(open);
@@ -103,7 +103,7 @@ class BaseLayout extends Component {
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className={styles.logo} >
             <div className={styles.imglogo}>
-            <img src={Logo} />
+            <img src={Logo} alt=""/>
             </div>
           
           {/* <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>

@@ -1,5 +1,5 @@
-import React, { Component,Fragment} from 'react';
-import { Button, Card, Table, Popconfirm} from 'antd';
+import React, { Component} from 'react';
+import {  Card} from 'antd';
 import { connect } from 'dva';
 
 import {getPathParams} from '../../components/_utils/pathTools.js'
@@ -50,20 +50,23 @@ import Test from '../../components/charts/Bar'
     return res;
   }
   
-  drawChart=()=>{
-    const {currentInstrument}=this.props;
-    const data1=new Array(7);
-    for(let i=0;i<7;i++){
-      data1.push(parseInt(6*Math.random()))
-    }
-    return (<Test data={{
-      xdata: ['周日','周一','周二','周三','周四','周五','周六'],
-      ydata: {
-        ydata1:[],
-        ydata2:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6],
-      }
-    }}/>)
-  }
+  // drawChart=()=>{
+  //   //const {currentInstrument}=this.props;
+  //   const data1=new Array(7);
+  //   for(let i=0;i<7;i++){
+  //     data1.push(parseInt(6*Math.random()))
+  //   }
+  //   return (<Test data={{
+  //     xdata: ['周日','周一','周二','周三','周四','周五','周六'],
+  //     ydata: {
+  //       ydata1:[],
+  //       ydata2:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6],
+  //     }
+  //   }}
+    
+    
+  //   />)
+  // }
   
 
   render() {
@@ -75,12 +78,12 @@ import Test from '../../components/charts/Bar'
     console.log(currentInstrument);
     const data1=[];
     for(let i=0;i<7;i++){
-      data1.push(parseInt(6*Math.random()))
+      data1.push(parseInt(6*Math.random(),10));
     }
     console.log(data1)
     return (
       <div>
-        <Card title={<b>使用图表</b>}
+        <Card title={<b>统计图表</b>}
         >
      
         <Test data={{
@@ -89,7 +92,11 @@ import Test from '../../components/charts/Bar'
               ydata1:data1,
               ydata2:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6],
             }
-          }}/>
+          }}
+          
+          title={"指定实验仪器过去一周使用情况"}
+          legend={"预约数"}
+          />
        
         
         </Card>

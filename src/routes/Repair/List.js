@@ -68,8 +68,14 @@ import moment from 'moment/moment';
   }
  
 
-  toRepairData=()=>{
-    this.props.history.push('/index/repair/repairData');
+  // toRepairData=()=>{
+  //   this.props.history.push('/index/repair/repairData');
+  // }
+  toRepairDeviceData=()=>{
+    this.props.history.push('/index/repair/repairDeviceData');
+  }
+  toRepairInstrumentData=()=>{
+    this.props.history.push('/index/repair/repairInstrumentData');
   }
 
   
@@ -157,9 +163,14 @@ import moment from 'moment/moment';
            <div 
            //style={{display:userInfo.role==='1'?'none':'normal'}}
            >
-              <Button type="primary" onClick={this.toRepairData}>
-                维修统计
+              <Button type="primary" onClick={this.toRepairInstrumentData}>
+                仪器维修统计
              </Button>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+             <Button type="primary" onClick={this.toRepairDeviceData}>
+                设备维修统计
+             </Button>
+            
              &nbsp;&nbsp;&nbsp;&nbsp;
              <Button type="primary" onClick={this.addRepair}>
                添加维修记录

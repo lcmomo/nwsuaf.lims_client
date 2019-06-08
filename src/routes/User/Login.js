@@ -3,7 +3,7 @@ import { Form, Input, Button,Message,Icon } from 'antd';
 import { connect } from 'dva';
 import {Link} from 'dva/router'
 import Request from '../../utils/request';
-import {encrypt,decrypt} from '../../utils/aesutil.js'
+import {encrypt} from '../../utils/aesutil.js'
 
 import styles from './Login.scss';
 
@@ -19,7 +19,7 @@ const FormItem=Form.Item;
        
         if(!err){
            
-            Request('http://120.95.133.187:8080/user/login',
+            Request('http://localhost:8080/user/login',
             {
                 method:'POST',
            
@@ -78,7 +78,7 @@ const FormItem=Form.Item;
       };
     return (
         <div className={styles.normal} style={{height:window.innerHeight}}>
-        <h1 className={styles.title}>科研实验平台预约管理系统</h1>
+        <h1 className={styles.title}>科研实验平台管理系统</h1>
         <div className={styles.account}>
         <Form className="account-form" {...formItemLayout}>
             <FormItem  label="用户名">
@@ -127,7 +127,7 @@ const FormItem=Form.Item;
             </Button>
             </FormItem>
             <Link to="/forgetPassword"><span className={styles.forget}>忘记密码?</span></Link>
-            
+            &nbsp;&nbsp;&nbsp;&nbsp;<Link to="/register"><span className={styles.forget}>注册</span></Link>
             </Form>
         </div>
       </div>

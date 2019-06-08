@@ -70,7 +70,9 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
     this.props.history.push('/index/device/addDevice');
   }
   
-
+  toDeviceData=()=>{
+    this.props.history.push('/index/device/deviceData');
+  }
  
   render() {
     const columns=[
@@ -172,7 +174,10 @@ import {DEVICE_CATEGORY} from '../../utils/constant.js'
          extra={
            <div 
            //style={{display:userInfo.role==='1'?'none':'normal'}}
-           >
+           ><Button type="primary" onClick={this.toDeviceData}>
+           设备统计
+         </Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;
              <Button type="primary" onClick={this.addDevice}>
                添加设备
              </Button>

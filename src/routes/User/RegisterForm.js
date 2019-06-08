@@ -1,9 +1,9 @@
 import React from 'react';
-import { Form, Input, Button,Card ,Message} from 'antd';
+import { Form, Input, Button,Message} from 'antd';
 import { connect } from 'dva/index';
 import mock from 'mockjs'
 //import CurrentUserForm from './currentUserForm.js'
-import {encrypt,decrypt} from '../../utils/aesutil.js'
+import {encrypt} from '../../utils/aesutil.js'
 const FormItem=Form.Item;
 //const {TextArea}=Input;
 @connect(({user})=>({user}))
@@ -16,7 +16,7 @@ class CreateUser extends React.Component{
     }
 
     componentDidMount(){
-        const userInfo=JSON.parse(sessionStorage.getItem('user'));
+        //const userInfo=JSON.parse(sessionStorage.getItem('user'));
        
        
     }
@@ -78,12 +78,12 @@ class CreateUser extends React.Component{
               sm: { span: 12 },
             },
           };
-          const currentUser=this.state.userInfo!==undefined?this.state.userInfo:{};
+         //const currentUser=this.state.userInfo!==undefined?this.state.userInfo:{};
           //console.log(currentUser);
        
         return (
             <div>
-                <Card >
+               
       
      
             
@@ -91,7 +91,7 @@ class CreateUser extends React.Component{
                     onSubmit={
                         this.handleSubmit.bind(this)
                         
-                    } autoComplete="off">
+                    } autoComplete="off" >
                    
                     <FormItem  {...formItemLayout}>
                     {getFieldDecorator('userno', {
@@ -127,7 +127,7 @@ class CreateUser extends React.Component{
                     })(<Input placeholder="电话" style={{ width: '70%' }} />)}
                     </FormItem>
 
-                <FormItem label="邮箱" {...formItemLayout}>
+                {/* <FormItem label="邮箱" {...formItemLayout}>
                     {getFieldDecorator('email', {
                         initialValue: '',
                         rules: [
@@ -137,7 +137,7 @@ class CreateUser extends React.Component{
                         
                         ],
                     })(<Input placeholder="邮箱" style={{ width: '70%' }} />)}
-                </FormItem>
+                </FormItem> */}
                 <FormItem label="密码" {...formItemLayout}>
                     {getFieldDecorator('password', {
                         initialValue:'',
@@ -158,7 +158,7 @@ class CreateUser extends React.Component{
                 </Form>
                 
                             {/* <CurrentUserForm  currentUser={userInfo!==undefined?userInfo:{}}submitForm={this.submitForm}></CurrentUserForm> */}
-                        </Card>
+                        
                     </div>
                 )
             }

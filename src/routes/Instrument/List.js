@@ -66,7 +66,10 @@ import{Link} from 'dva/router'
     this.props.history.push('addInstrument');
   }
 
-
+  toInstrumentData=()=>{
+    this.props.history.push('instrumentData');
+  }
+ 
   
   render() {
     const columns=[
@@ -130,6 +133,10 @@ import{Link} from 'dva/router'
            <div 
            //style={{display:userInfo.role==='1'?'none':'normal'}}
            >
+              <Button type="primary"  onClick={this.toInstrumentData}>
+               仪器统计
+             </Button>
+             &nbsp;&nbsp;&nbsp;&nbsp;
              <Button type="primary"  onClick={this.addPlat}>
                新增仪器
              </Button>
